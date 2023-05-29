@@ -23,14 +23,16 @@ struct AddView: View {
             Form {
                 TextField("Name", text: $name)
                 
+                HStack {
+                    TextField("Amount", value: $amount, format: .localCurrency)
+                        .keyboardType(.decimalPad)
+                }
                 Picker("Type", selection: $type) {
                     ForEach(types, id: \.self) {
                         Text($0)
                     }
                 }
-                
-                TextField("Amount", value: $amount, format: .currency(code: "USD"))
-                    .keyboardType(.decimalPad)
+                .pickerStyle(.segmented)
             }
             .navigationTitle("Add new expense")
             .toolbar {
